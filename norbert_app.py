@@ -1,23 +1,28 @@
 import streamlit as st
 
-
 from customer_support import CustomerSupportPipeline
 from ui.graph_renderer import GraphRenderer
 
 import os
+import('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+import openai
+import shutil
+import hashlib
+from glob import glob
+from datetime import datetime
+from dotenv import load_dotenv
 
 
-
-api_key = ""
+api_key = st.secrets['OPENAI_API_KEY']
+#load_dotenv()
 
 os.environ['OPENAI_API_KEY'] = api_key
 
-
 st.title("Hi, I'm your Advanced Shop Agent")
 
-
 chatbot_started = False
-
 
 def get_answer(query: str, pipeline):
     """
