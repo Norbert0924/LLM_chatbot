@@ -4,7 +4,7 @@ from customer_support import CustomerSupportPipeline
 from ui.graph_renderer import GraphRenderer
 
 import os
-import('pysqlite3')
+__import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import openai
